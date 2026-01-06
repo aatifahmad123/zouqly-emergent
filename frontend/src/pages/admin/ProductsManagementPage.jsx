@@ -228,13 +228,6 @@ const ProductsManagementPage = () => {
         <div className="flex justify-between items-center mb-8">
           <h1 className="font-display text-4xl font-bold text-[#2D4A3E]">Manage Products</h1>
           <div className="flex gap-3">
-            <Button
-              onClick={() => setFeaturedModalOpen(true)}
-              className="bg-[#D4A017] text-white hover:bg-[#D4A017]/90 rounded-full"
-            >
-              <Star className="mr-2 h-4 w-4" />
-              Edit Featured Products
-            </Button>
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
                 <Button onClick={resetForm} className="bg-[#2D4A3E] text-white rounded-full">
@@ -339,11 +332,23 @@ const ProductsManagementPage = () => {
               </div>
               <h3 className="font-semibold text-[#2D4A3E] mb-1">{product.name}</h3>
               <p className="text-sm text-[#666666] mb-2">{product.weight} - ₹{product.price}</p>
-              {product.is_featured && (
-                <span className="inline-block text-xs bg-[#D4A017]/10 text-[#D4A017] px-2 py-1 rounded-full mb-2">
-                  Featured
+              <div 
+                onClick={() => toggleFeatured(product)}
+                className={`flex items-center gap-2 cursor-pointer mb-3 p-2 rounded-lg transition-all ${
+                  product.is_featured 
+                    ? 'bg-[#D4A017]/10 border border-[#D4A017]' 
+                    : 'bg-gray-100 border border-gray-200 hover:border-[#D4A017]'
+                }`}
+              >
+                <div className={`w-5 h-5 rounded flex items-center justify-center ${
+                  product.is_featured ? 'bg-[#D4A017]' : 'bg-white border border-gray-300'
+                }`}>
+                  {product.is_featured && <Star className="h-3 w-3 text-white fill-white" />}
+                </div>
+                <span className={`text-xs font-medium ${product.is_featured ? 'text-[#D4A017]' : 'text-gray-500'}`}>
+                  {product.is_featured ? 'Featured' : 'Mark as Featured'}
                 </span>
-              )}
+              </div>
               <div className="flex gap-2">
                 <Button
                   variant="outline"
