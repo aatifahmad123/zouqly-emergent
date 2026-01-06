@@ -55,7 +55,7 @@ const OrdersManagementPage = () => {
         <div className="space-y-6">
           {orders.map((order) => (
             <Card key={order.id} className="p-6 rounded-2xl">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                 <div>
                   <p className="text-sm text-[#666666]">Order ID</p>
                   <p className="font-medium text-[#2D4A3E]">{order.id.slice(0, 8)}</p>
@@ -63,6 +63,12 @@ const OrdersManagementPage = () => {
                 <div>
                   <p className="text-sm text-[#666666]">Customer</p>
                   <p className="font-medium text-[#2D4A3E]">{order.user_email}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-[#666666]">Order Placed On</p>
+                  <p className="font-medium text-[#2D4A3E]">
+                    {order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm text-[#666666]">Total</p>
