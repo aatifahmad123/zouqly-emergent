@@ -222,11 +222,46 @@ const ProductsManagementPage = () => {
                     ))}
                   </SelectContent>
                 </Select>
-                <Input
-                  placeholder="Tags (comma-separated, e.g., bestseller, trending)"
-                  value={formData.tags.join(', ')}
-                  onChange={(e) => setFormData({...formData, tags: e.target.value.split(',').map(t => t.trim())})}
-                />
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Product Tags</label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { value: 'bestseller', label: '🔥 Bestseller', color: 'from-amber-500 to-orange-500' },
+                      { value: 'trending', label: '📈 Trending', color: 'from-pink-500 to-rose-500' },
+                      { value: 'new', label: '✨ New', color: 'from-emerald-500 to-teal-500' },
+                      { value: 'premium', label: '👑 Premium', color: 'from-violet-500 to-purple-500' }
+                    ].map((tag) => (
+                      <div
+                        key={tag.value}
+                        onClick={() => {
+                          const newTags = formData.tags.includes(tag.value)
+                            ? formData.tags.filter(t => t !== tag.value)
+                            : [...formData.tags, tag.value]
+                          setFormData({...formData, tags: newTags})
+                        }}
+                        className={`cursor-pointer p-3 rounded-lg border-2 transition-all flex items-center gap-2 ${
+                          formData.tags.includes(tag.value)
+                            ? `bg-gradient-to-r ${tag.color} text-white border-transparent`
+                            : 'bg-gray-50 border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                          formData.tags.includes(tag.value)
+                            ? 'bg-white border-white'
+                            : 'border-gray-400'
+                        }`}>
+                          {formData.tags.includes(tag.value) && (
+                            <svg className="w-3 h-3 text-gray-800" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          )}
+                        </div>
+                        <span className="font-medium text-sm">{tag.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Product Image</label>
