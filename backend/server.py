@@ -1,30 +1,23 @@
-from fastapi import FastAPI, APIRouter, Depends, HTTPException, status, UploadFile, File
+from fastapi import FastAPI, APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from pydantic import BaseModel, EmailStr
 from typing import List, Optional, Dict, Any
 import uuid
-from datetime import datetime, timezone, timedelta
-import jwt
-import bcrypt
+from datetime import datetime, timezone
+from supabase import create_client, Client
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-
-# JWT settings
-JWT_SECRET = os.getenv("JWT_SECRET", "your-secret-key-change-in-production")
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRATION_HOURS = 24
+# Supabase client
+supabase_url = os.getenv("SUPABASE_URL", "https://pmgxaqpxlahnqwxrweyn.supabase.co")
+supabase_key = os.getenv("SUPABASE_KEY", "sb_publishable_KZOAFH_vABRgia_v2OBeWQ_uYurB14k")
+supabase: Client = create_client(supabase_url, supabase_key)
 
 # Create the main app
 app = FastAPI(title="Zouqly API")
