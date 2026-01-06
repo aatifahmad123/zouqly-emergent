@@ -245,8 +245,9 @@ const HomePage = () => {
                       <div className="aspect-square bg-[#F3EFE6] overflow-hidden">
                         {product.image_url ? (
                           <img
-                            src={product.image_url}
+                            src={product.image_url.includes('?') ? product.image_url : `${product.image_url}?auto=compress&cs=tinysrgb&w=600`}
                             alt={product.name}
+                            loading="lazy"
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                           />
                         ) : (
