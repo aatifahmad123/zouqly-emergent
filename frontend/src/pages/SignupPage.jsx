@@ -32,7 +32,7 @@ const SignupPage = () => {
     }
 
     setLoading(true)
-    const { error } = await signUp(email, password, 'user')
+    const { data, error } = await signUp(email, password, 'user')
     
     if (error) {
       setError(error.message)
@@ -42,7 +42,7 @@ const SignupPage = () => {
     }
 
     setSuccess(true)
-    toast.success('Account created successfully! Please check your email.')
+    toast.success('Account created! You can now login.')
     setTimeout(() => navigate('/login'), 2000)
   }
 
