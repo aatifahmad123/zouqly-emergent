@@ -113,12 +113,24 @@ const OrdersManagementPage = () => {
                       <User className="h-5 w-5 text-[#2D4A3E]" />
                       <h4 className="font-semibold text-[#2D4A3E]">Customer Details</h4>
                     </div>
+                    {order.customer_name && (
+                      <>
+                        <p className="text-sm text-[#666666]">Name</p>
+                        <p className="font-medium text-[#2D4A3E] mb-2">{order.customer_name}</p>
+                      </>
+                    )}
                     <p className="text-sm text-[#666666]">Email</p>
                     <p className="font-medium text-[#2D4A3E] mb-2">{order.user_email}</p>
-                    {order.shipping_address && (
+                    {order.customer_phone && (
+                      <>
+                        <p className="text-sm text-[#666666]">Phone</p>
+                        <p className="font-medium text-[#2D4A3E] mb-2">{order.customer_phone}</p>
+                      </>
+                    )}
+                    {order.customer_address && (
                       <>
                         <p className="text-sm text-[#666666]">Address</p>
-                        <p className="font-medium text-[#2D4A3E] text-sm">{order.shipping_address}</p>
+                        <p className="font-medium text-[#2D4A3E] text-sm">{order.customer_address}</p>
                       </>
                     )}
                   </div>
