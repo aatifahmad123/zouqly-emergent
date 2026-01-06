@@ -280,6 +280,14 @@ async def update_order_status(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.delete("/orders/{order_id}")
+async def delete_order(order_id: str, user: Dict = Depends(require_admin)):
+    try:
+        response = supabase.table("orders").delete().eq("id", order_id).execute()
+        return {"message": "Order deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Testimonials
 @api_router.get("/testimonials")
 async def list_testimonials():
