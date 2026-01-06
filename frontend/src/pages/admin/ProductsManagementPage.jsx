@@ -42,6 +42,12 @@ const ProductsManagementPage = () => {
     fetchCategories()
   }, [])
 
+  useEffect(() => {
+    // Update selected featured when products change
+    const featured = products.filter(p => p.is_featured === true).map(p => p.id)
+    setSelectedFeatured(featured)
+  }, [products])
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get(`${API}/products`)
