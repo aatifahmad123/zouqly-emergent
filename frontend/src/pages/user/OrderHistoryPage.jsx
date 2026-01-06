@@ -66,7 +66,7 @@ const OrderHistoryPage = () => {
                         ? 'bg-green-100 text-green-700'
                         : 'bg-yellow-100 text-yellow-700'
                     }`}>
-                      {order.payment_status}
+                      {order.payment_status === 'Pending' ? 'Payment Pending' : order.payment_status}
                     </span>
                     <span className={`inline-block ml-2 px-3 py-1 rounded-full text-xs font-medium ${
                       order.delivery_status === 'Delivered'
