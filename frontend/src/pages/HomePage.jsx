@@ -25,9 +25,8 @@ const HomePage = () => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(`${API}/products`)
-      // Filter only featured products and limit to max 4
-      const featured = response.data.filter(p => p.is_featured === true).slice(0, 4)
-      setProducts(featured.length > 0 ? featured : response.data.slice(0, 4))
+      // Show first 4 products on homepage
+      setProducts(response.data.slice(0, 4))
     } catch (error) {
       console.error('Error fetching products:', error)
     }

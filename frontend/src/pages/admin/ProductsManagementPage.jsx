@@ -240,27 +240,6 @@ const ProductsManagementPage = () => {
                     </div>
                   )}
                 </div>
-
-                <div 
-                  onClick={() => setFormData({...formData, is_featured: !formData.is_featured})}
-                  className={`flex items-center gap-3 cursor-pointer p-3 rounded-lg transition-all border ${
-                    formData.is_featured 
-                      ? 'bg-[#D4A017]/10 border-[#D4A017]' 
-                      : 'bg-gray-50 border-gray-200 hover:border-[#D4A017]'
-                  }`}
-                >
-                  <div className={`w-5 h-5 rounded flex items-center justify-center ${
-                    formData.is_featured ? 'bg-[#D4A017]' : 'bg-white border border-gray-300'
-                  }`}>
-                    {formData.is_featured && <Star className="h-3 w-3 text-white fill-white" />}
-                  </div>
-                  <div>
-                    <span className={`text-sm font-medium ${formData.is_featured ? 'text-[#D4A017]' : 'text-gray-600'}`}>
-                      {formData.is_featured ? 'Featured Product' : 'Mark as Featured'}
-                    </span>
-                    <p className="text-xs text-gray-500">Featured products appear on homepage (max 4)</p>
-                  </div>
-                </div>
                 
                 <Button type="submit" className="w-full bg-[#2D4A3E] text-white">
                   {editingProduct ? 'Update' : 'Create'} Product
@@ -285,11 +264,6 @@ const ProductsManagementPage = () => {
               </div>
               <h3 className="font-semibold text-[#2D4A3E] mb-1">{product.name}</h3>
               <p className="text-sm text-[#666666] mb-2">{product.weight} - ₹{product.price}</p>
-              {product.is_featured && (
-                <span className="inline-block text-xs bg-[#D4A017]/10 text-[#D4A017] px-2 py-1 rounded-full mb-2">
-                  Featured
-                </span>
-              )}
               <div className="flex gap-2">
                 <Button
                   variant="outline"
