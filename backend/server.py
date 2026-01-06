@@ -282,7 +282,7 @@ async def list_orders(user: Dict = Depends(get_current_user)):
 @api_router.post("/orders")
 async def create_order(order: OrderBase, user: Dict = Depends(get_current_user)):
     try:
-        # Build order data - only include fields that exist in the database
+        # Build order data with all fields including customer details
         data = {
             "user_id": user["id"],
             "user_email": user["email"],
@@ -290,6 +290,11 @@ async def create_order(order: OrderBase, user: Dict = Depends(get_current_user))
             "total_amount": order.total_amount,
             "payment_status": order.payment_status,
             "delivery_status": order.delivery_status,
+            "customer_name": order.customer_name,
+            "customer_phone": order.customer_phone,
+            "customer_address": order.customer_address,
+            "delivery_charge": order.delivery_charge or 0,
+            "delivery_type": order.delivery_type,
             "created_at": datetime.utcnow().isoformat()
         }
             
