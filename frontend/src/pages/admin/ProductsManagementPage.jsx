@@ -239,12 +239,6 @@ const ProductsManagementPage = () => {
                   )}
                 </div>
                 
-                <Input
-                  placeholder="Stock"
-                  type="number"
-                  value={formData.stock}
-                  onChange={(e) => setFormData({...formData, stock: e.target.value})}
-                />
                 <Button type="submit" className="w-full bg-[#2D4A3E] text-white">
                   {editingProduct ? 'Update' : 'Create'} Product
                 </Button>
