@@ -20,8 +20,6 @@ const ProductsManagementPage = () => {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [open, setOpen] = useState(false)
-  const [featuredModalOpen, setFeaturedModalOpen] = useState(false)
-  const [selectedFeatured, setSelectedFeatured] = useState([])
   const [editingProduct, setEditingProduct] = useState(null)
   const [uploading, setUploading] = useState(false)
   const [formData, setFormData] = useState({
