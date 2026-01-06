@@ -48,6 +48,23 @@ const OrdersManagementPage = () => {
     }
   }
 
+  const deleteOrder = async (orderId) => {
+    if (!window.confirm('Are you sure you want to delete this order? This action cannot be undone.')) {
+      return
+    }
+    
+    try {
+      const token = await getToken()
+      await axios.delete(`${API}/orders/${orderId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      toast.success('Order deleted!')
+      fetchOrders()
+    } catch (error) {
+      toast.error('Failed to delete order')
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#FDFBF7]">
       <Header />
@@ -63,9 +80,19 @@ const OrdersManagementPage = () => {
                   <span className="text-sm opacity-80">Order</span>
                   <span className="font-mono font-semibold">#{order.id.slice(0, 8).toUpperCase()}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 opacity-80" />
-                  <span>{order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}</span>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4 opacity-80" />
+                    <span>{order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => deleteOrder(order.id)}
+                    className="text-white hover:text-red-300 hover:bg-red-500/20"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
 
