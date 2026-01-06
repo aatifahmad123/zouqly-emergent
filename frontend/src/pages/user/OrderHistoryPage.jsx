@@ -57,7 +57,7 @@ const OrderHistoryPage = () => {
                       Order ID: {order.id.slice(0, 8)}
                     </p>
                     <p className="text-sm text-[#666666]">
-                      Date: {new Date(order.created_at).toLocaleDateString()}
+                      Order Placed: {order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}
                     </p>
                   </div>
                   <div className="text-right">
