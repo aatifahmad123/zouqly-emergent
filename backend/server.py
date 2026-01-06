@@ -152,6 +152,36 @@ async def login(credentials: UserLogin):
             raise HTTPException(status_code=401, detail="Please confirm your email or contact admin")
         raise HTTPException(status_code=401, detail="Login failed")
 
+@api_router.put("/auth/set-admin/{user_email}")
+async def set_user_as_admin(user_email: str, user: Dict = Depends(require_admin)):
+    """Set a user's role to admin - only callable by existing admins"""
+    try:
+        # Get all users from Supabase Auth admin API
+        # Note: This requires service role key which we have
+        users_response = supabase.auth.admin.list_users()
+        
+        target_user = None
+        for u in users_response:
+            if u.email == user_email:
+                target_user = u
+                break
+        
+        if not target_user:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        # Update user metadata to set role as admin
+        updated_user = supabase.auth.admin.update_user_by_id(
+            target_user.id,
+            {"user_metadata": {"role": "admin"}}
+        )
+        
+        return {"message": f"User {user_email} is now an admin", "user_id": target_user.id}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Set admin error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Category routes
 @api_router.get("/categories")
 async def list_categories():
