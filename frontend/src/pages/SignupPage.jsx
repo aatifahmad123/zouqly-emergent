@@ -35,8 +35,16 @@ const SignupPage = () => {
     const { data, error } = await signUp(email, password, 'user')
     
     if (error) {
-      setError(error.message)
-      toast.error('Signup failed: ' + error.message)
+      const errorMsg = error.message || ''
+      
+      // Handle already registered user
+      if (errorMsg.toLowerCase().includes('already') || errorMsg.toLowerCase().includes('registered') || errorMsg.toLowerCase().includes('exists')) {
+        setError('An account with this email already exists. Please login instead.')
+        toast.error('Email already registered. Please login.')
+      } else {
+        setError(error.message)
+        toast.error('Signup failed: ' + error.message)
+      }
       setLoading(false)
       return
     }
