@@ -101,7 +101,7 @@ const HomePage = () => {
               className="relative"
             >
               <img
-                src="https://images.pexels.com/photos/3212808/pexels-photo-3212808.jpeg"
+                src="https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Premium Dry Fruits"
                 className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
               />
