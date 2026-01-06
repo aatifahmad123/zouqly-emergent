@@ -1,0 +1,157 @@
+{
+  "brand_identity": {
+    "name": "Zouqly",
+    "tagline": "Where Quality Meets Expectation & Taste",
+    "core_values": ["Premium Quality", "Organic Trust", "Health & Wellness"],
+    "aesthetic": "Organic Luxury",
+    "theme_mode": "light"
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Playfair Display, serif",
+      "body": "Manrope, sans-serif",
+      "accent": "Caveat, cursive"
+    },
+    "weights": {
+      "headings": "font-semibold",
+      "body": "font-normal"
+    },
+    "instructions": "Use Playfair Display for all H1-H3 headings to evoke premium quality. Use Manrope for body text for maximum legibility. Use Caveat sparingly for 'handwritten' notes or organic touches (e.g., '100% Natural' badges)."
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Zouqly Green",
+        "hex": "#2D4A3E",
+        "tailwind": "bg-[#2D4A3E] text-white"
+      },
+      "secondary": {
+        "name": "Almond Beige",
+        "hex": "#F3EFE6",
+        "tailwind": "bg-[#F3EFE6] text-[#2D4A3E]"
+      },
+      "accent": {
+        "name": "Harvest Gold",
+        "hex": "#D4A017",
+        "tailwind": "text-[#D4A017]"
+      },
+      "background": {
+        "name": "Paper Cream",
+        "hex": "#FDFBF7",
+        "tailwind": "bg-[#FDFBF7]"
+      },
+      "text": {
+        "primary": "#1A1A1A",
+        "muted": "#666666"
+      }
+    },
+    "shadcn_overrides": {
+      "root": {
+        "--background": "40 20% 98%",
+        "--foreground": "150 25% 15%",
+        "--card": "0 0% 100%",
+        "--card-foreground": "150 25% 15%",
+        "--popover": "0 0% 100%",
+        "--popover-foreground": "150 25% 15%",
+        "--primary": "155 24% 23%",
+        "--primary-foreground": "40 20% 98%",
+        "--secondary": "40 30% 93%",
+        "--secondary-foreground": "155 24% 23%",
+        "--muted": "40 30% 93%",
+        "--muted-foreground": "150 5% 45%",
+        "--accent": "40 30% 93%",
+        "--accent-foreground": "155 24% 23%",
+        "--destructive": "0 84.2% 60.2%",
+        "--destructive-foreground": "0 0% 98%",
+        "--border": "40 20% 90%",
+        "--input": "40 20% 90%",
+        "--ring": "155 24% 23%",
+        "--radius": "0.75rem"
+      }
+    }
+  },
+  "layout_strategies": {
+    "spacing": "Generous. Use p-8 to p-16 for section padding. Avoid cramped layouts.",
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "grid_system": "Use 'Bento' grids for categories. Avoid uniform 3-column grids everywhere. Mix wide and tall cards.",
+    "hero_section": "Asymmetrical. Text on left (40%), Image on right (60%) with organic shape mask or floating elements. Do NOT center text.",
+    "product_grid": "Clean, minimal. No borders on cards, just subtle hover lift. Focus on the image."
+  },
+  "component_rules": {
+    "buttons": {
+      "style": "Pill-shaped (rounded-full).",
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300",
+      "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+    },
+    "cards": {
+      "style": "Flat or subtle border. Rounded-xl.",
+      "behavior": "Scale up slightly on hover (scale-105). Image zoom inside container."
+    },
+    "inputs": {
+      "style": "Rounded-lg border-input bg-transparent focus:ring-1 focus:ring-primary"
+    },
+    "navigation": {
+      "style": "Sticky, glassmorphism (backdrop-blur-md bg-white/70).",
+      "logo": "Font-serif, bold, text-2xl text-primary."
+    }
+  },
+  "visual_enhancers": {
+    "textures": "Use a subtle 'noise' or 'paper' texture overlay on the background to reduce digital sterility.",
+    "shadows": "Soft, diffuse shadows. shadow-[0_8px_30px_rgb(0,0,0,0.04)].",
+    "animations": "Fade-in-up for all scroll elements. Staggered entrance for product lists.",
+    "icons": "Lucide-react. Use thin strokes (stroke-width={1.5}) for elegance."
+  },
+  "image_assets": {
+    "hero": [
+      {
+        "url": "https://images.pexels.com/photos/3212808/pexels-photo-3212808.jpeg",
+        "alt": "Premium Almonds Hero",
+        "category": "hero"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Almonds",
+        "url": "https://images.pexels.com/photos/5002442/pexels-photo-5002442.jpeg",
+        "alt": "Organic Almonds"
+      },
+      {
+        "name": "Cashews",
+        "url": "https://images.pexels.com/photos/7292895/pexels-photo-7292895.jpeg",
+        "alt": "Premium Cashews"
+      },
+      {
+        "name": "Pistachios",
+        "url": "https://images.pexels.com/photos/7495420/pexels-photo-7495420.jpeg",
+        "alt": "Salted Pistachios"
+      },
+      {
+        "name": "Raisins",
+        "url": "https://images.pexels.com/photos/6085951/pexels-photo-6085951.jpeg",
+        "alt": "Golden Raisins"
+      }
+    ],
+    "lifestyle": [
+      {
+        "url": "https://images.pexels.com/photos/5505471/pexels-photo-5505471.jpeg",
+        "alt": "Healthy Snacking"
+      }
+    ]
+  },
+  "instructions_to_main_agent": {
+    "file_types": "Use .jsx for components and pages. Do not use .tsx.",
+    "libraries": "Use 'lucide-react' for icons, 'framer-motion' for animations, 'clsx' and 'tailwind-merge' for class handling.",
+    "critical_rules": [
+      "Do NOT use generic 'Inter' font. Import Playfair Display and Manrope from Google Fonts.",
+      "Do NOT use standard blue/indigo colors. Stick to the Earthy Palette defined above.",
+      "Ensure all interactive elements have data-testid attributes.",
+      "Implement the 'Zouqly' logo with rounded corners as requested.",
+      "Footer must include address, email, and social links."
+    ]
+  },
+  "universal_guidelines": {
+    "design_philosophy": "Fusion over Imitation. Mix organic textures with clean modern layouts.",
+    "accessibility": "Ensure text contrast meets WCAG AA. Use aria-labels for icon-only buttons.",
+    "motion": "Micro-interactions are mandatory. Buttons should scale/color-shift on hover."
+  }
+}
