@@ -282,15 +282,34 @@ async def list_orders(user: Dict = Depends(get_current_user)):
 @api_router.post("/orders")
 async def create_order(order: OrderBase, user: Dict = Depends(get_current_user)):
     try:
+        # Build order data with only the fields that exist in the database
         data = {
             "user_id": user["id"],
             "user_email": user["email"],
-            **order.model_dump(),
+            "items": [item.model_dump() for item in order.items],
+            "total_amount": order.total_amount,
+            "payment_status": order.payment_status,
+            "delivery_status": order.delivery_status,
             "created_at": datetime.utcnow().isoformat()
         }
+        
+        # Add optional customer fields if provided
+        if order.customer_name:
+            data["customer_name"] = order.customer_name
+        if order.customer_phone:
+            data["customer_phone"] = order.customer_phone
+        if order.customer_address:
+            data["customer_address"] = order.customer_address
+        if order.delivery_charge:
+            data["delivery_charge"] = order.delivery_charge
+        if order.delivery_type:
+            data["delivery_type"] = order.delivery_type
+            
+        logger.info(f"Creating order with data: {data}")
         response = supabase.table("orders").insert(data).execute()
         return response.data[0] if response.data else {}
     except Exception as e:
+        logger.error(f"Order creation error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @api_router.put("/orders/{order_id}")
