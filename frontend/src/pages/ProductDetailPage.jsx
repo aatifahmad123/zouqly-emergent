@@ -136,26 +136,24 @@ const ProductDetailPage = () => {
             <div className="space-y-4 pt-4">
               <div className="flex items-center gap-4">
                 <label className="font-medium text-[#2D4A3E]">Quantity:</label>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
+                <div className="flex items-center gap-2 border border-[#2D4A3E] rounded-full overflow-hidden">
+                  <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="px-4 py-2 bg-white hover:bg-[#F3EFE6] text-[#2D4A3E] font-bold transition-colors"
                     data-testid="decrease-quantity"
                   >
-                    -
-                  </Button>
-                  <span className="w-12 text-center font-medium" data-testid="quantity-display">
+                    −
+                  </button>
+                  <span className="px-6 font-medium text-[#2D4A3E]" data-testid="quantity-display">
                     {quantity}
                   </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
+                  <button
                     onClick={() => setQuantity(quantity + 1)}
+                    className="px-4 py-2 bg-white hover:bg-[#F3EFE6] text-[#2D4A3E] font-bold transition-colors"
                     data-testid="increase-quantity"
                   >
                     +
-                  </Button>
+                  </button>
                 </div>
               </div>
 
