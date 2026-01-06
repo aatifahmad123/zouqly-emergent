@@ -371,62 +371,6 @@ const ProductsManagementPage = () => {
             </Card>
           ))}
         </div>
-
-        {/* Featured Products Modal */}
-        <Dialog open={featuredModalOpen} onOpenChange={setFeaturedModalOpen}>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="text-2xl">Select Featured Products (Max 4)</DialogTitle>
-              <p className="text-sm text-gray-600">
-                Currently selected: {selectedFeatured.length}/4
-              </p>
-            </DialogHeader>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  onClick={() => toggleFeaturedSelection(product.id)}
-                  className={`cursor-pointer p-4 border-2 rounded-lg transition-all ${
-                    selectedFeatured.includes(product.id)
-                      ? 'border-[#D4A017] bg-[#D4A017]/10'
-                      : 'border-gray-200 hover:border-[#2D4A3E]'
-                  }`}
-                >
-                  <div className="aspect-square bg-[#F3EFE6] rounded-lg mb-2 overflow-hidden">
-                    {product.image_url ? (
-                      <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-[#2D4A3E] opacity-40 text-xs">No Image</span>
-                      </div>
-                    )}
-                  </div>
-                  <h4 className="font-semibold text-sm text-[#2D4A3E] mb-1">{product.name}</h4>
-                  <p className="text-xs text-[#666666]">{product.weight} - ₹{product.price}</p>
-                  {selectedFeatured.includes(product.id) && (
-                    <div className="flex items-center gap-1 mt-2">
-                      <Star className="h-4 w-4 fill-[#D4A017] text-[#D4A017]" />
-                      <span className="text-xs text-[#D4A017] font-medium">Featured</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex justify-end gap-3">
-              <Button variant="outline" onClick={() => setFeaturedModalOpen(false)}>
-                Cancel
-              </Button>
-              <Button
-                onClick={saveFeaturedProducts}
-                className="bg-[#2D4A3E] text-white"
-              >
-                Save Featured Products
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
       </div>
     </div>
   )
