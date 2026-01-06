@@ -24,7 +24,7 @@ import ProductsManagementPage from './pages/admin/ProductsManagementPage'
 import CategoriesManagementPage from './pages/admin/CategoriesManagementPage'
 import OrdersManagementPage from './pages/admin/OrdersManagementPage'
 import TestimonialsManagementPage from './pages/admin/TestimonialsManagementPage'
-import ContentManagementPage from './pages/admin/ContentManagementPage'
+import FeaturedProductsPage from './pages/admin/FeaturedProductsPage'
 
 import '@/App.css'
 
