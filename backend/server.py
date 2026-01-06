@@ -62,6 +62,11 @@ class OrderBase(BaseModel):
     total_amount: float
     payment_status: str = "Pending"
     delivery_status: str = "Order Placed"
+    customer_name: Optional[str] = None
+    customer_phone: Optional[str] = None
+    customer_address: Optional[str] = None
+    delivery_charge: Optional[float] = 0
+    delivery_type: Optional[str] = None
 
 class TestimonialBase(BaseModel):
     name: str
