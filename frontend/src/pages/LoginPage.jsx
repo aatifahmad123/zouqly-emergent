@@ -48,7 +48,7 @@ const LoginPage = () => {
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center mb-4">
             <img
-              src="https://res.cloudinary.com/dbt85chus/image/upload/v1767713217/Screenshot_from_2026-01-06_20-51-52_i9vjxy.png"
+              src="https://res.cloudinary.com/dbt85chus/image/upload/v1767717725/Screenshot_from_2026-01-06_22-10-01_qbudwp.png"
               alt="Zouqly Logo"
               className="h-16 w-16 rounded-xl"
             />

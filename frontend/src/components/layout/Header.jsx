@@ -35,7 +35,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3" data-testid="logo-link">
             <img
-              src="https://res.cloudinary.com/dbt85chus/image/upload/v1767713217/Screenshot_from_2026-01-06_20-51-52_i9vjxy.png"
+              src="https://res.cloudinary.com/dbt85chus/image/upload/v1767717725/Screenshot_from_2026-01-06_22-10-01_qbudwp.png"
               alt="Zouqly Logo"
               className="h-12 w-12 rounded-xl object-cover"
             />

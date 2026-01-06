@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767713217/Screenshot_from_2026-01-06_20-51-52_i9vjxy.png"
+                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767717725/Screenshot_from_2026-01-06_22-10-01_qbudwp.png"
                 alt="Zouqly Logo"
                 className="h-10 w-10 rounded-xl"
               />
