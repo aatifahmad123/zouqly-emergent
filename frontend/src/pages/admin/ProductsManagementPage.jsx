@@ -89,6 +89,34 @@ const ProductsManagementPage = () => {
     }
   }
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file')
+      return
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size should be less than 5MB')
+      return
+    }
+
+    setUploading(true)
+    const result = await uploadImage(file)
+    setUploading(false)
+
+    if (result.success) {
+      setFormData({ ...formData, image_url: result.url })
+      toast.success('Image uploaded successfully!')
+    } else {
+      toast.error('Failed to upload image: ' + result.error)
+    }
+  }
+
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure?')) return
     try {
