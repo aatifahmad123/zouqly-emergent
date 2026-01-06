@@ -50,7 +50,8 @@ const AdminDashboard = () => {
     { title: 'Products', icon: Package, path: '/admin/products', count: stats.products },
     { title: 'Categories', icon: FolderOpen, path: '/admin/categories', count: stats.categories },
     { title: 'Orders', icon: ShoppingCart, path: '/admin/orders', count: stats.orders },
-    { title: 'Testimonials', icon: Star, path: '/admin/testimonials', count: stats.testimonials }
+    { title: 'Testimonials', icon: Star, path: '/admin/testimonials', count: stats.testimonials },
+    { title: 'Featured Products', icon: Sparkles, path: '/admin/featured', count: 0 }
   ]
 
   return (
