@@ -42,8 +42,7 @@ const SignupPage = () => {
     }
 
     setSuccess(true)
-    toast.success('Account created! You can now login.')
-    setTimeout(() => navigate('/login'), 2000)
+    toast.success('Account created! Please check your email to confirm.')
   }
 
   if (success) {
