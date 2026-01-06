@@ -227,13 +227,21 @@ const ProductsManagementPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex justify-between items-center mb-8">
           <h1 className="font-display text-4xl font-bold text-[#2D4A3E]">Manage Products</h1>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button onClick={resetForm} className="bg-[#2D4A3E] text-white rounded-full">
-                <Plus className="mr-2 h-4 w-4" />
-                Add Product
-              </Button>
-            </DialogTrigger>
+          <div className="flex gap-3">
+            <Button
+              onClick={() => setFeaturedModalOpen(true)}
+              className="bg-[#D4A017] text-white hover:bg-[#D4A017]/90 rounded-full"
+            >
+              <Star className="mr-2 h-4 w-4" />
+              Edit Featured Products
+            </Button>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button onClick={resetForm} className="bg-[#2D4A3E] text-white rounded-full">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Product
+                </Button>
+              </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingProduct ? 'Edit' : 'Add'} Product</DialogTitle>
