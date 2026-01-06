@@ -219,11 +219,26 @@ const ProductsManagementPage = () => {
                   value={formData.tags.join(', ')}
                   onChange={(e) => setFormData({...formData, tags: e.target.value.split(',').map(t => t.trim())})}
                 />
-                <Input
-                  placeholder="Image URL"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-                />
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Product Image</label>
+                  <div className="flex items-center gap-4">
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={uploading}
+                      className="flex-1"
+                    />
+                    {uploading && <span className="text-sm text-gray-500">Uploading...</span>}
+                  </div>
+                  {formData.image_url && (
+                    <div className="mt-2">
+                      <img src={formData.image_url} alt="Preview" className="h-32 w-32 object-cover rounded-lg" />
+                    </div>
+                  )}
+                </div>
+                
                 <Input
                   placeholder="Stock"
                   type="number"
