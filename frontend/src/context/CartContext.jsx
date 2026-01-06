@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { useAuth } from './AuthContext'
 
 const CartContext = createContext({})
 
@@ -11,18 +12,30 @@ export const useCart = () => {
 }
 
 export const CartProvider = ({ children }) => {
+  const { user } = useAuth()
   const [cart, setCart] = useState([])
 
+  // Get cart key specific to the user
+  const getCartKey = () => {
+    return user ? `zouqly_cart_${user.id}` : 'zouqly_cart_guest'
+  }
+
+  // Load cart when user changes
   useEffect(() => {
-    const savedCart = localStorage.getItem('zouqly_cart')
+    const cartKey = getCartKey()
+    const savedCart = localStorage.getItem(cartKey)
     if (savedCart) {
       setCart(JSON.parse(savedCart))
+    } else {
+      setCart([]) // Clear cart when switching users
     }
-  }, [])
+  }, [user])
 
+  // Save cart when it changes
   useEffect(() => {
-    localStorage.setItem('zouqly_cart', JSON.stringify(cart))
-  }, [cart])
+    const cartKey = getCartKey()
+    localStorage.setItem(cartKey, JSON.stringify(cart))
+  }, [cart, user])
 
   const addToCart = (product, quantity = 1) => {
     setCart(prevCart => {
