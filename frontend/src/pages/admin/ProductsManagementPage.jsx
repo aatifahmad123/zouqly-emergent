@@ -239,19 +239,6 @@ const ProductsManagementPage = () => {
                     </div>
                   )}
                 </div>
-
-                <div className="flex items-center gap-2 p-4 border rounded-lg">
-                  <input
-                    type="checkbox"
-                    id="featured"
-                    checked={formData.is_featured}
-                    onChange={(e) => setFormData({...formData, is_featured: e.target.checked})}
-                    className="w-4 h-4"
-                  />
-                  <label htmlFor="featured" className="text-sm font-medium cursor-pointer">
-                    Show as Featured Product on Homepage (Select max 4 products as featured)
-                  </label>
-                </div>
                 
                 <Button type="submit" className="w-full bg-[#2D4A3E] text-white">
                   {editingProduct ? 'Update' : 'Create'} Product
