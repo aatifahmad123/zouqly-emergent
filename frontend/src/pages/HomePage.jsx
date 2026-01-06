@@ -127,7 +127,7 @@ const HomePage = () => {
               {
                 icon: <Shield className="h-8 w-8" />,
                 title: 'Premium Quality',
-                desc: 'Handpicked from the finest farms, ethically sourced, rigorously quality-checked.'
+                desc: 'Handpicked from the finest farms, rigorously quality-checked.'
               },
               {
                 icon: <Leaf className="h-8 w-8" />,
