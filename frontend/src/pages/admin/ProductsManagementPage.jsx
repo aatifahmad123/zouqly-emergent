@@ -82,42 +82,6 @@ const ProductsManagementPage = () => {
     }
   }
 
-  const toggleFeaturedSelection = (productId) => {
-    if (selectedFeatured.includes(productId)) {
-      setSelectedFeatured(selectedFeatured.filter(id => id !== productId))
-    } else {
-      if (selectedFeatured.length >= 4) {
-        toast.error('Maximum 4 products can be featured')
-        return
-      }
-      setSelectedFeatured([...selectedFeatured, productId])
-    }
-  }
-
-  const saveFeaturedProducts = async () => {
-    try {
-      const token = await getToken()
-      
-      // Update all products
-      for (const product of products) {
-        const shouldBeFeatured = selectedFeatured.includes(product.id)
-        if (product.is_featured !== shouldBeFeatured) {
-          await axios.put(
-            `${API}/products/${product.id}`,
-            { ...product, is_featured: shouldBeFeatured },
-            { headers: { Authorization: `Bearer ${token}` } }
-          )
-        }
-      }
-
-      toast.success('Featured products updated!')
-      setFeaturedModalOpen(false)
-      fetchProducts()
-    } catch (error) {
-      toast.error('Failed to update featured products')
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
