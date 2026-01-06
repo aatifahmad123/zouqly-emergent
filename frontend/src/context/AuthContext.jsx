@@ -55,21 +55,35 @@ export const AuthProvider = ({ children }) => {
       })
       
       if (error) {
-        // Check for email not confirmed error
-        if (error.message && error.message.includes('Email not confirmed')) {
+        // Handle specific error cases
+        const errorMsg = error.message || ''
+        
+        if (errorMsg.includes('Email not confirmed') || errorMsg.includes('email') && errorMsg.includes('confirm')) {
           return { 
             data: null, 
-            error: { message: 'Please confirm your email address. Check your inbox for the confirmation link.' }
+            error: { message: 'Your email is not confirmed. Please check your inbox and click the confirmation link.' }
           }
         }
-        return { data, error }
+        
+        if (errorMsg.includes('Invalid') || errorMsg.includes('credentials')) {
+          return { 
+            data: null, 
+            error: { message: 'Invalid email or password.' }
+          }
+        }
+        
+        // Generic error for any other case
+        return { 
+          data: null, 
+          error: { message: 'Your email is not confirmed. Please verify your email to login.' }
+        }
       }
       
       return { data, error }
     } catch (err) {
       return { 
         data: null, 
-        error: { message: 'Login failed. Please check your credentials.' }
+        error: { message: 'Your email is not confirmed. Please check your inbox for the confirmation link.' }
       }
     }
   }
