@@ -97,11 +97,28 @@ const ProductDetailPage = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            {product.tags && product.tags.includes('bestseller') && (
-              <span className="inline-block text-sm font-accent text-[#D4A017] bg-[#D4A017]/10 px-3 py-1 rounded-full">
-                Bestseller
-              </span>
-            )}
+            <div className="flex flex-wrap gap-2 mb-2">
+              {product.tags && product.tags.includes('bestseller') && (
+                <span className="inline-block text-sm font-bold text-white bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-1.5 rounded-full shadow-sm">
+                  🔥 Bestseller
+                </span>
+              )}
+              {product.tags && product.tags.includes('trending') && (
+                <span className="inline-block text-sm font-bold text-white bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-1.5 rounded-full shadow-sm">
+                  📈 Trending
+                </span>
+              )}
+              {product.tags && product.tags.includes('new') && (
+                <span className="inline-block text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-1.5 rounded-full shadow-sm">
+                  ✨ New
+                </span>
+              )}
+              {product.tags && product.tags.includes('premium') && (
+                <span className="inline-block text-sm font-bold text-white bg-gradient-to-r from-violet-500 to-purple-500 px-4 py-1.5 rounded-full shadow-sm">
+                  👑 Premium
+                </span>
+              )}
+            </div>
             
             <h1 className="font-display text-4xl font-bold text-[#2D4A3E]" data-testid="product-name">
               {product.name}

@@ -210,8 +210,23 @@ const HomePage = () => {
                             ₹{product.price}
                           </span>
                           {product.tags && product.tags.includes('bestseller') && (
-                            <span className="text-xs font-accent text-[#D4A017] bg-[#D4A017]/10 px-2 py-1 rounded-full">
-                              Bestseller
+                            <span className="text-sm font-bold text-white bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 rounded-full shadow-sm">
+                              🔥 Bestseller
+                            </span>
+                          )}
+                          {product.tags && product.tags.includes('trending') && (
+                            <span className="text-sm font-bold text-white bg-gradient-to-r from-pink-500 to-rose-500 px-3 py-1 rounded-full shadow-sm">
+                              📈 Trending
+                            </span>
+                          )}
+                          {product.tags && product.tags.includes('new') && (
+                            <span className="text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-1 rounded-full shadow-sm">
+                              ✨ New
+                            </span>
+                          )}
+                          {product.tags && product.tags.includes('premium') && (
+                            <span className="text-sm font-bold text-white bg-gradient-to-r from-violet-500 to-purple-500 px-3 py-1 rounded-full shadow-sm">
+                              👑 Premium
                             </span>
                           )}
                         </div>
