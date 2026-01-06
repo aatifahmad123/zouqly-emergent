@@ -126,9 +126,10 @@ const OrdersManagementPage = () => {
                       onValueChange={(value) => updateStatus(order.id, 'payment', value)}
                     >
                       <SelectTrigger className="bg-white">
-                        <SelectValue />
+                        <SelectValue placeholder="Select status" />
                       </SelectTrigger>
                       <SelectContent>
+                        <SelectItem value="Pending">Pending</SelectItem>
                         <SelectItem value="Payment Pending">Payment Pending</SelectItem>
                         <SelectItem value="Paid">Paid</SelectItem>
                       </SelectContent>
