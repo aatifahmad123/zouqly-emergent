@@ -236,6 +236,32 @@ async def delete_product(product_id: str, user: Dict = Depends(require_admin)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+# Image upload
+@api_router.post("/upload")
+async def upload_image(file: UploadFile = File(...), user: Dict = Depends(require_admin)):
+    try:
+        # Generate unique filename
+        file_ext = file.filename.split('.')[-1] if '.' in file.filename else 'jpg'
+        file_name = f"products/{uuid.uuid4().hex}_{int(datetime.utcnow().timestamp())}.{file_ext}"
+        
+        # Read file content
+        content = await file.read()
+        
+        # Upload to Supabase storage
+        response = supabase.storage.from_('product-images').upload(
+            file_name,
+            content,
+            file_options={"content-type": file.content_type}
+        )
+        
+        # Get public URL
+        public_url = supabase.storage.from_('product-images').get_public_url(file_name)
+        
+        return {"success": True, "url": public_url}
+    except Exception as e:
+        logger.error(f"Upload error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Order routes
 @api_router.get("/orders")
 async def list_orders(user: Dict = Depends(get_current_user)):
