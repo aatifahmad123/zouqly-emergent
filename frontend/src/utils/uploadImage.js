@@ -8,31 +8,31 @@ export const uploadImage = async (file) => {
     const filePath = `products/${fileName}`
 
     // Upload file to Supabase Storage
-    const { data, error } = await supabase.storage
+    const { error: uploadError } = await supabase.storage
       .from('product-images')
       .upload(filePath, file, {
         cacheControl: '3600',
         upsert: false
       })
 
-    if (error) {
-      throw error
+    if (uploadError) {
+      throw uploadError
     }
 
     // Get public URL
-    const { data: urlData } = supabase.storage
+    const { data } = supabase.storage
       .from('product-images')
       .getPublicUrl(filePath)
 
     return {
       success: true,
-      url: urlData.publicUrl
+      url: data.publicUrl
     }
   } catch (error) {
     console.error('Upload error:', error)
     return {
       success: false,
-      error: error.message
+      error: error.message || 'Failed to upload image'
     }
   }
 }
