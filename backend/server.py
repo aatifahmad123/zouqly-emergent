@@ -101,13 +101,25 @@ async def register(user_data: UserRegister):
             "email": user_data.email,
             "password": user_data.password,
             "options": {
-                "data": {"role": user_data.role}
+                "data": {"role": user_data.role},
+                "email_redirect_to": None
             }
         })
-        return {"message": "User registered successfully", "user": response.user}
+        
+        if response.user:
+            return {
+                "message": "User registered successfully", 
+                "user": response.user,
+                "note": "If email confirmation is enabled, please check your email"
+            }
+        else:
+            raise HTTPException(status_code=400, detail="Registration failed")
     except Exception as e:
-        logger.error(f"Registration error: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e))
+        error_msg = str(e)
+        logger.error(f"Registration error: {error_msg}")
+        if "already registered" in error_msg.lower():
+            raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail=error_msg)
 
 @api_router.post("/auth/login")
 async def login(credentials: UserLogin):
@@ -116,14 +128,23 @@ async def login(credentials: UserLogin):
             "email": credentials.email,
             "password": credentials.password
         })
+        
+        if not response.session:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+            
         return {
             "access_token": response.session.access_token,
             "user": response.user,
             "role": response.user.user_metadata.get("role", "user")
         }
     except Exception as e:
-        logger.error(f"Login error: {str(e)}")
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+        error_msg = str(e)
+        logger.error(f"Login error: {error_msg}")
+        if "Invalid login credentials" in error_msg or "invalid" in error_msg.lower():
+            raise HTTPException(status_code=401, detail="Invalid email or password")
+        if "Email not confirmed" in error_msg or "not confirmed" in error_msg.lower():
+            raise HTTPException(status_code=401, detail="Please confirm your email or contact admin")
+        raise HTTPException(status_code=401, detail="Login failed")
 
 # Category routes
 @api_router.get("/categories")
