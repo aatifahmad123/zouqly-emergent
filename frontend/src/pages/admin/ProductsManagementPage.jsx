@@ -274,7 +274,22 @@ const ProductsManagementPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <Card key={product.id} className="p-4 rounded-2xl">
+            <Card key={product.id} className="p-4 rounded-2xl relative">
+              {/* Featured Star Badge */}
+              <button
+                onClick={() => toggleFeatured(product)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white shadow-lg hover:scale-110 transition-transform"
+                title={product.is_featured ? "Remove from featured" : "Set as featured"}
+              >
+                <Star
+                  className={`h-5 w-5 ${
+                    product.is_featured
+                      ? 'fill-[#D4A017] text-[#D4A017]'
+                      : 'text-gray-400'
+                  }`}
+                />
+              </button>
+
               <div className="aspect-square bg-[#F3EFE6] rounded-lg mb-4 overflow-hidden">
                 {product.image_url ? (
                   <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
