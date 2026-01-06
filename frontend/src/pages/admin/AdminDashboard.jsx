@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Package, ShoppingCart, FileText, Star, FolderOpen } from 'lucide-react'
+import { Package, ShoppingCart, FileText, Star, FolderOpen, Sparkles } from 'lucide-react'
 import Header from '../../components/layout/Header'
 import { Card } from '../../components/ui/card'
 import { Button } from '../../components/ui/button'
