@@ -83,7 +83,7 @@ const AppRoutes = () => {
       <Route path="/admin/categories" element={<ProtectedRoute requireAdmin><CategoriesManagementPage /></ProtectedRoute>} />
       <Route path="/admin/orders" element={<ProtectedRoute requireAdmin><OrdersManagementPage /></ProtectedRoute>} />
       <Route path="/admin/testimonials" element={<ProtectedRoute requireAdmin><TestimonialsManagementPage /></ProtectedRoute>} />
-      <Route path="/admin/content" element={<ProtectedRoute requireAdmin><ContentManagementPage /></ProtectedRoute>} />
+      <Route path="/admin/featured" element={<ProtectedRoute requireAdmin><FeaturedProductsPage /></ProtectedRoute>} />
     </Routes>
   )
 }
