@@ -57,10 +57,18 @@ const SignupPage = () => {
                 <h3 className="font-display text-2xl font-bold text-[#2D4A3E] mb-2">
                   Account Created!
                 </h3>
-                <p className="text-[#666666]">
-                  Your account has been created successfully. Redirecting to login...
+                <p className="text-[#666666] mb-4">
+                  Please check your email and click the confirmation link to activate your account.
+                </p>
+                <p className="text-sm text-[#666666]">
+                  Once confirmed, you can login and start shopping!
                 </p>
               </div>
+              <Link to="/login" className="mt-4">
+                <Button className="bg-[#2D4A3E] text-white">
+                  Go to Login
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
