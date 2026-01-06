@@ -21,6 +21,7 @@ const ProductsManagementPage = () => {
   const [categories, setCategories] = useState([])
   const [open, setOpen] = useState(false)
   const [editingProduct, setEditingProduct] = useState(null)
+  const [uploading, setUploading] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     weight: '',
