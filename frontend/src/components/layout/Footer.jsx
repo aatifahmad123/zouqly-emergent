@@ -53,12 +53,6 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <a href="mailto:customercare@zouqly.in" className="text-sm text-white/80 hover:text-white">
-                  customercare@zouqly.in
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-5 w-5 flex-shrink-0" />
                 <a href="mailto:info.hubofall@gmail.com" className="text-sm text-white/80 hover:text-white">
                   info.hubofall@gmail.com
                 </a>
