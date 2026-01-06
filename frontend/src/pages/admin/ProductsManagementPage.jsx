@@ -31,7 +31,8 @@ const ProductsManagementPage = () => {
     category_id: '',
     tags: [],
     image_url: '',
-    stock: 100
+    stock: 100,
+    is_featured: false
   })
 
   useEffect(() => {
