@@ -291,7 +291,7 @@ const HomePage = () => {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="py-16 px-4 overflow-hidden" data-testid="testimonials-section">
+        <section className="py-16 px-4 overflow-hidden bg-[#F3EFE6]" data-testid="testimonials-section">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl lg:text-4xl font-bold text-[#2D4A3E] mb-4">
@@ -309,15 +309,16 @@ const HomePage = () => {
                     transform: translateX(-50%);
                   }
                 }
-                .animate-scroll {
-                  animation: scroll-testimonials 30s linear infinite;
+                .testimonials-track {
+                  animation: scroll-testimonials 40s linear infinite;
+                  will-change: transform;
                 }
-                .animate-scroll:hover {
+                .testimonials-track:hover {
                   animation-play-state: paused;
                 }
               `}</style>
               
-              <div className="flex animate-scroll">
+              <div className="flex testimonials-track">
                 {/* Duplicate testimonials for seamless loop */}
                 {[...testimonials, ...testimonials].map((testimonial, index) => (
                   <div
