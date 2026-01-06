@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class ZouqlyAPITester:
-    def __init__(self, base_url="https://zouqly-market.preview.emergentagent.com"):
+    def __init__(self, base_url="https://premium-dry.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.admin_token = None

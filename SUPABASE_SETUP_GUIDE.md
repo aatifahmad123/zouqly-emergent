@@ -130,7 +130,7 @@ This will create:
 
 ### Step 5: Create Admin User
 
-1. Go to your app: https://zouqly-market.preview.emergentagent.com/signup
+1. Go to your app: https://premium-dry.preview.emergentagent.com/signup
 2. Sign up with an email and password
 3. Go to Supabase Authentication > Users
 4. Find your user and click on it
@@ -172,8 +172,8 @@ This will create:
 
 ## Application URLs
 
-- **Live App**: https://zouqly-market.preview.emergentagent.com
-- **API Health**: https://zouqly-market.preview.emergentagent.com/api/health
+- **Live App**: https://premium-dry.preview.emergentagent.com
+- **API Health**: https://premium-dry.preview.emergentagent.com/api/health
 - **Supabase Dashboard**: https://supabase.com/dashboard/project/pmgxaqpxlahnqwxrweyn
 
 ## Support

@@ -11,7 +11,7 @@ This account is already created and email-confirmed, ready to use immediately.
 
 ### 1. Login as Admin
 
-1. Go to: https://zouqly-market.preview.emergentagent.com/login
+1. Go to: https://premium-dry.preview.emergentagent.com/login
 2. Enter email: `admin@zouqly.com`
 3. Enter password: `admin123`
 4. Click "Sign In"
