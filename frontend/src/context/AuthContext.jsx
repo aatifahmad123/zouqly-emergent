@@ -44,6 +44,15 @@ export const AuthProvider = ({ children }) => {
         }
       }
     })
+    
+    // Check if user already exists - Supabase returns user with empty identities array
+    if (data?.user && data.user.identities && data.user.identities.length === 0) {
+      return { 
+        data: null, 
+        error: { message: 'An account with this email already exists. Please login instead.' }
+      }
+    }
+    
     return { data, error }
   }
 
