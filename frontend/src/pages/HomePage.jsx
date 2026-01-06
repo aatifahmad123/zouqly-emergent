@@ -291,7 +291,7 @@ const HomePage = () => {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="py-16 px-4" data-testid="testimonials-section">
+        <section className="py-16 px-4 overflow-hidden" data-testid="testimonials-section">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl lg:text-4xl font-bold text-[#2D4A3E] mb-4">
@@ -299,26 +299,43 @@ const HomePage = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {testimonials.slice(0, 3).map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="p-6 bg-white rounded-2xl border-none shadow-lg">
-                    <div className="flex gap-1 mb-3">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-[#D4A017] text-[#D4A017]" />
-                      ))}
-                    </div>
-                    <p className="text-[#666666] mb-4">{testimonial.comment}</p>
-                    <p className="font-semibold text-[#2D4A3E]">{testimonial.name}</p>
-                  </Card>
-                </motion.div>
-              ))}
+            <div className="relative">
+              <style>{`
+                @keyframes scroll-testimonials {
+                  0% {
+                    transform: translateX(0);
+                  }
+                  100% {
+                    transform: translateX(-50%);
+                  }
+                }
+                .animate-scroll {
+                  animation: scroll-testimonials 30s linear infinite;
+                }
+                .animate-scroll:hover {
+                  animation-play-state: paused;
+                }
+              `}</style>
+              
+              <div className="flex animate-scroll">
+                {/* Duplicate testimonials for seamless loop */}
+                {[...testimonials, ...testimonials].map((testimonial, index) => (
+                  <div
+                    key={`${testimonial.id}-${index}`}
+                    className="flex-shrink-0 w-96 mx-4"
+                  >
+                    <Card className="p-6 bg-white rounded-2xl border-none shadow-lg h-full">
+                      <div className="flex gap-1 mb-3">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-[#D4A017] text-[#D4A017]" />
+                        ))}
+                      </div>
+                      <p className="text-[#666666] mb-4 leading-relaxed">{testimonial.comment}</p>
+                      <p className="font-semibold text-[#2D4A3E]">{testimonial.name}</p>
+                    </Card>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
