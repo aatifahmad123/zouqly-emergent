@@ -83,7 +83,15 @@ const OrdersManagementPage = () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 text-sm">
                     <Clock className="h-4 w-4 opacity-80" />
-                    <span>{order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}</span>
+                    <span>{order.created_at ? new Date(order.created_at).toLocaleString('en-IN', { 
+                      timeZone: 'Asia/Kolkata',
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      hour12: true
+                    }) : 'N/A'}</span>
                   </div>
                   <Button
                     variant="ghost"
