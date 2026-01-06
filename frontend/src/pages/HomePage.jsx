@@ -178,12 +178,12 @@ const HomePage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {categories.map((category, index) => {
                 const categoryImages = {
-                  "Cashews": "https://images.pexels.com/photos/7292895/pexels-photo-7292895.jpeg",
-                  "Almonds": "https://images.pexels.com/photos/5002442/pexels-photo-5002442.jpeg",
-                  "Raisins": "https://images.pexels.com/photos/6085951/pexels-photo-6085951.jpeg",
-                  "Mix": "https://images.pexels.com/photos/5505471/pexels-photo-5505471.jpeg"
+                  "Cashews": "https://images.pexels.com/photos/7292895/pexels-photo-7292895.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  "Almonds": "https://images.pexels.com/photos/5002442/pexels-photo-5002442.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  "Raisins": "https://images.pexels.com/photos/6085951/pexels-photo-6085951.jpeg?auto=compress&cs=tinysrgb&w=600",
+                  "Mix": "https://images.pexels.com/photos/5505471/pexels-photo-5505471.jpeg?auto=compress&cs=tinysrgb&w=600"
                 }
-                const imageUrl = categoryImages[category.name] || "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg"
+                const imageUrl = categoryImages[category.name] || "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=600"
                 
                 return (
                   <Link key={category.id} to={`/shop?category=${category.id}`}>
@@ -198,6 +198,7 @@ const HomePage = () => {
                       <img 
                         src={imageUrl} 
                         alt={category.name}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
