@@ -107,14 +107,20 @@ const ProductsManagementPage = () => {
     }
 
     setUploading(true)
-    const result = await uploadImage(file)
-    setUploading(false)
-
-    if (result.success) {
-      setFormData({ ...formData, image_url: result.url })
-      toast.success('Image uploaded successfully!')
-    } else {
-      toast.error('Failed to upload image: ' + result.error)
+    try {
+      const token = await getToken()
+      const result = await uploadImage(file, token)
+      
+      if (result.success) {
+        setFormData({ ...formData, image_url: result.url })
+        toast.success('Image uploaded successfully!')
+      } else {
+        toast.error('Failed to upload image: ' + result.error)
+      }
+    } catch (error) {
+      toast.error('Failed to upload image')
+    } finally {
+      setUploading(false)
     }
   }
 
