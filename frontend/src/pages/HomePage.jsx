@@ -165,61 +165,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Categories Section */}
-      {categories.length > 0 && (
-        <section className="py-16 px-4" data-testid="categories-section">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-3xl lg:text-4xl font-bold text-[#2D4A3E] mb-4">
-                Shop by Category
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {categories.map((category, index) => {
-                const categoryImages = {
-                  "Cashews": "https://images.pexels.com/photos/7292895/pexels-photo-7292895.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "Almonds": "https://images.pexels.com/photos/5002442/pexels-photo-5002442.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "Raisins": "https://images.pexels.com/photos/6085951/pexels-photo-6085951.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "Mix": "https://images.pexels.com/photos/5505471/pexels-photo-5505471.jpeg?auto=compress&cs=tinysrgb&w=600"
-                }
-                const imageUrl = categoryImages[category.name] || "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=600"
-                
-                return (
-                  <Link key={category.id} to={`/shop?category=${category.id}`}>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
-                      className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-lg h-64"
-                    >
-                      <img 
-                        src={imageUrl} 
-                        alt={category.name}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                        <div className="p-6 w-full">
-                          <h3 className="font-display text-2xl font-bold text-white">
-                            {category.name}
-                          </h3>
-                          {category.description && (
-                            <p className="text-white/80 text-sm mt-1">{category.description}</p>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Featured Products */}
       {products.length > 0 && (
         <section className="py-16 px-4 bg-[#F3EFE6]" data-testid="featured-products-section">
