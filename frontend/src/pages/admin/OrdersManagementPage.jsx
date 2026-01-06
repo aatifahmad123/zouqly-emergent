@@ -4,6 +4,7 @@ import { Card } from '../../components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
 import { useAuth } from '../../context/AuthContext'
 import { toast } from 'sonner'
+import { User, Package, Clock, CreditCard, Truck } from 'lucide-react'
 import axios from 'axios'
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
@@ -52,73 +53,116 @@ const OrdersManagementPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="font-display text-4xl font-bold text-[#2D4A3E] mb-8">Manage Orders</h1>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {orders.map((order) => (
-            <Card key={order.id} className="p-6 rounded-2xl">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <div>
-                  <p className="text-sm text-[#666666]">Order ID</p>
-                  <p className="font-medium text-[#2D4A3E]">{order.id.slice(0, 8)}</p>
+            <Card key={order.id} className="rounded-2xl overflow-hidden shadow-sm">
+              {/* Order Header */}
+              <div className="bg-[#2D4A3E] text-white px-6 py-4 flex justify-between items-center">
+                <div className="flex items-center gap-4">
+                  <span className="text-sm opacity-80">Order</span>
+                  <span className="font-mono font-semibold">#{order.id.slice(0, 8).toUpperCase()}</span>
                 </div>
-                <div>
-                  <p className="text-sm text-[#666666]">Customer</p>
-                  <p className="font-medium text-[#2D4A3E]">{order.user_email}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-[#666666]">Order Placed On</p>
-                  <p className="font-medium text-[#2D4A3E]">
-                    {order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-[#666666]">Total</p>
-                  <p className="font-medium text-[#2D4A3E]">₹{order.total_amount.toFixed(2)}</p>
+                <div className="flex items-center gap-2 text-sm">
+                  <Clock className="h-4 w-4 opacity-80" />
+                  <span>{order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="text-sm text-[#666666] block mb-2">Payment Status</label>
-                  <Select
-                    value={order.payment_status}
-                    onValueChange={(value) => updateStatus(order.id, 'payment', value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Payment Pending">Payment Pending</SelectItem>
-                      <SelectItem value="Paid">Paid</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="text-sm text-[#666666] block mb-2">Delivery Status</label>
-                  <Select
-                    value={order.delivery_status}
-                    onValueChange={(value) => updateStatus(order.id, 'delivery', value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Order Placed">Order Placed</SelectItem>
-                      <SelectItem value="Packed">Packed</SelectItem>
-                      <SelectItem value="Shipped">Shipped</SelectItem>
-                      <SelectItem value="Delivered">Delivered</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="border-t pt-4">
-                <h4 className="font-semibold text-[#2D4A3E] mb-2">Items</h4>
-                {order.items.map((item, idx) => (
-                  <div key={idx} className="flex justify-between text-sm py-1">
-                    <span>{item.product_name} x {item.quantity}</span>
-                    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+              <div className="p-6">
+                {/* Customer & Status Section */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                  {/* Customer Details */}
+                  <div className="bg-[#F3EFE6] rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <User className="h-5 w-5 text-[#2D4A3E]" />
+                      <h4 className="font-semibold text-[#2D4A3E]">Customer Details</h4>
+                    </div>
+                    <p className="text-sm text-[#666666]">Email</p>
+                    <p className="font-medium text-[#2D4A3E] mb-2">{order.user_email}</p>
+                    {order.shipping_address && (
+                      <>
+                        <p className="text-sm text-[#666666]">Address</p>
+                        <p className="font-medium text-[#2D4A3E] text-sm">{order.shipping_address}</p>
+                      </>
+                    )}
                   </div>
-                ))}
+
+                  {/* Payment Status */}
+                  <div className="bg-[#F3EFE6] rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <CreditCard className="h-5 w-5 text-[#2D4A3E]" />
+                      <h4 className="font-semibold text-[#2D4A3E]">Payment Status</h4>
+                    </div>
+                    <Select
+                      value={order.payment_status}
+                      onValueChange={(value) => updateStatus(order.id, 'payment', value)}
+                    >
+                      <SelectTrigger className="bg-white">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Payment Pending">Payment Pending</SelectItem>
+                        <SelectItem value="Paid">Paid</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Delivery Status */}
+                  <div className="bg-[#F3EFE6] rounded-xl p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Truck className="h-5 w-5 text-[#2D4A3E]" />
+                      <h4 className="font-semibold text-[#2D4A3E]">Delivery Status</h4>
+                    </div>
+                    <Select
+                      value={order.delivery_status}
+                      onValueChange={(value) => updateStatus(order.id, 'delivery', value)}
+                    >
+                      <SelectTrigger className="bg-white">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Order Placed">Order Placed</SelectItem>
+                        <SelectItem value="Packed">Packed</SelectItem>
+                        <SelectItem value="Shipped">Shipped</SelectItem>
+                        <SelectItem value="Delivered">Delivered</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Products Section */}
+                <div className="border-t pt-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Package className="h-5 w-5 text-[#2D4A3E]" />
+                    <h4 className="font-semibold text-[#2D4A3E]">Order Items</h4>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {order.items.map((item, idx) => (
+                      <div 
+                        key={idx} 
+                        className="flex items-center justify-between bg-white border border-gray-100 rounded-lg p-4"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 bg-[#F3EFE6] rounded-lg flex items-center justify-center">
+                            <Package className="h-6 w-6 text-[#2D4A3E] opacity-50" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-[#2D4A3E]">{item.product_name}</p>
+                            <p className="text-sm text-[#666666]">Qty: {item.quantity} × ₹{item.price.toFixed(2)}</p>
+                          </div>
+                        </div>
+                        <p className="font-semibold text-[#2D4A3E]">₹{(item.price * item.quantity).toFixed(2)}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total */}
+                  <div className="mt-4 pt-4 border-t flex justify-between items-center">
+                    <span className="text-lg font-semibold text-[#2D4A3E]">Order Total</span>
+                    <span className="text-2xl font-bold text-[#D4A017]">₹{order.total_amount.toFixed(2)}</span>
+                  </div>
+                </div>
               </div>
             </Card>
           ))}
