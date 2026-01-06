@@ -35,6 +35,21 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Models
+class UserRegister(BaseModel):
+    email: EmailStr
+    password: str
+    role: str = "user"
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class User(BaseModel):
+    id: str
+    email: str
+    role: str
+    created_at: str
+
 class CategoryBase(BaseModel):
     name: str
     description: Optional[str] = None
