@@ -58,30 +58,6 @@ const ProductsManagementPage = () => {
     }
   }
 
-  const toggleFeatured = async (product) => {
-    const currentlyFeatured = products.filter(p => p.is_featured === true)
-    
-    // Check if trying to add more than 4 featured products
-    if (!product.is_featured && currentlyFeatured.length >= 4) {
-      toast.error('Maximum 4 products can be featured. Remove one first.')
-      return
-    }
-
-    try {
-      const token = await getToken()
-      await axios.put(
-        `${API}/products/${product.id}`,
-        { ...product, is_featured: !product.is_featured },
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-
-      toast.success(product.is_featured ? 'Removed from featured' : 'Added to featured!')
-      fetchProducts()
-    } catch (error) {
-      toast.error('Failed to update featured status')
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
