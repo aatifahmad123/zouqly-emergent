@@ -18,11 +18,23 @@ const CheckoutPage = () => {
   const { cart, getTotalPrice, clearCart } = useCart()
   const { getToken } = useAuth()
   const [loading, setLoading] = useState(false)
+  const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
+  const [deliveryOption, setDeliveryOption] = useState('within-delhi')
+
+  const deliveryCharges = {
+    'within-delhi': 50,
+    'ncr': 70,
+    'outside-ncr': 90
+  }
+
+  const getTotalWithDelivery = () => {
+    return getTotalPrice() + deliveryCharges[deliveryOption]
+  }
 
   const handlePlaceOrder = async () => {
-    if (!address || !phone) {
+    if (!name || !address || !phone) {
       toast.error('Please fill all fields')
       return
     }
@@ -41,7 +53,12 @@ const CheckoutPage = () => {
         `${API}/orders`,
         {
           items: orderItems,
-          total_amount: getTotalPrice()
+          total_amount: getTotalWithDelivery(),
+          delivery_charge: deliveryCharges[deliveryOption],
+          delivery_type: deliveryOption,
+          customer_name: name,
+          customer_address: address,
+          customer_phone: phone
         },
         {
           headers: { Authorization: `Bearer ${token}` }
