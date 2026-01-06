@@ -48,11 +48,30 @@ export const AuthProvider = ({ children }) => {
   }
 
   const signIn = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
-    return { data, error }
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+      
+      if (error) {
+        // Check for email not confirmed error
+        if (error.message && error.message.includes('Email not confirmed')) {
+          return { 
+            data: null, 
+            error: { message: 'Please confirm your email address. Check your inbox for the confirmation link.' }
+          }
+        }
+        return { data, error }
+      }
+      
+      return { data, error }
+    } catch (err) {
+      return { 
+        data: null, 
+        error: { message: 'Login failed. Please check your credentials.' }
+      }
+    }
   }
 
   const signOut = async () => {
