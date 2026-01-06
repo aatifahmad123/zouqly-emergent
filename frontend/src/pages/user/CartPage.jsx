@@ -58,26 +58,24 @@ const CartPage = () => {
                     <h3 className="font-semibold text-[#2D4A3E]">{item.name}</h3>
                     <p className="text-sm text-[#666666] mb-2">{item.weight}</p>
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
+                      <div className="flex items-center gap-0 border border-[#2D4A3E] rounded-full overflow-hidden">
+                        <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          className="px-3 py-1 bg-white hover:bg-[#F3EFE6] text-[#2D4A3E] font-bold text-sm transition-colors"
                           data-testid={`decrease-${item.id}`}
                         >
-                          -
-                        </Button>
-                        <span className="w-8 text-center" data-testid={`quantity-${item.id}`}>
+                          −
+                        </button>
+                        <span className="px-4 text-sm font-medium text-[#2D4A3E]" data-testid={`quantity-${item.id}`}>
                           {item.quantity}
                         </span>
-                        <Button
-                          variant="outline"
-                          size="sm"
+                        <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          className="px-3 py-1 bg-white hover:bg-[#F3EFE6] text-[#2D4A3E] font-bold text-sm transition-colors"
                           data-testid={`increase-${item.id}`}
                         >
                           +
-                        </Button>
+                        </button>
                       </div>
                       <Button
                         variant="ghost"
