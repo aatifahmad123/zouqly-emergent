@@ -15,8 +15,15 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # Supabase client
-supabase_url = os.getenv("SUPABASE_URL", "https://pmgxaqpxlahnqwxrweyn.supabase.co")
-supabase_key = os.getenv("SUPABASE_KEY", "sb_publishable_KZOAFH_vABRgia_v2OBeWQ_uYurB14k")
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+
+if not supabase_url:
+    raise RuntimeError("SUPABASE_URL is not set")
+
+if not supabase_key:
+    raise RuntimeError("SUPABASE_SERVICE_ROLE_KEY is not set")
+
 supabase: Client = create_client(supabase_url, supabase_key)
 
 app = FastAPI(title="Zouqly API")
