@@ -150,7 +150,6 @@ const OrdersManagementPage = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Pending">Pending</SelectItem>
-                        <SelectItem value="Payment Pending">Payment Pending</SelectItem>
                         <SelectItem value="Paid">Paid</SelectItem>
                       </SelectContent>
                     </Select>

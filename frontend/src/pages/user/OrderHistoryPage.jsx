@@ -53,7 +53,7 @@ const OrderHistoryPage = () => {
   }
 
   const formatPaymentStatus = (status) => {
-    if (status === 'Pending') return 'Payment Pending'
+    if (status === 'Pending') return 'Pending'
     return status
   }
 
