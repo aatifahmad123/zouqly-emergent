@@ -340,10 +340,8 @@ const HomePage = () => {
             {/* Testimonials */}
 
 {/* Testimonials */}
-
-{/* Testimonials */}
 {testimonials.length > 0 && (
-  <section className="py-16 bg-gradient-to-b from-white to-orange-50">
+  <section className="py-16 bg-gradient-to-b from-white to-[rgb(45,74,62)]/10">
     <div className="container mx-auto px-4 mb-12 text-center">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -359,7 +357,7 @@ const HomePage = () => {
     </div>
 
     {/* Scrolling Container */}
-    <div className="overflow-hidden">
+    <div className="overflow-hidden group">
       <motion.div
         className="flex gap-6"
         animate={{
@@ -374,6 +372,7 @@ const HomePage = () => {
           },
         }}
         style={{ width: "max-content" }}
+        whileHover={{ animationPlayState: "paused" }}
       >
         {/* Triple testimonials for seamless loop */}
         {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
@@ -393,7 +392,7 @@ const HomePage = () => {
               "{testimonial.comment}"
             </p>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-semibold">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[rgb(45,74,62)] to-[rgb(35,60,50)] flex items-center justify-center text-white font-semibold">
                 {testimonial.name.charAt(0)}
               </div>
               <div>
@@ -409,6 +408,8 @@ const HomePage = () => {
     </div>
   </section>
 )}
+
+
 
             <Footer />
         </div>
