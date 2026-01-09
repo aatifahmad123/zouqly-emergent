@@ -137,7 +137,7 @@ const HomePage = () => {
                             className="relative"
                         >
                             <img
-                                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767941119/image-one_ymlgjm.png"
+                                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767941448/image-one_1_obqz4w.png"
                                 alt="Premium Dry Fruits"
                                 className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
                             />
