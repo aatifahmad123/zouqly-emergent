@@ -8,18 +8,27 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <img
                 src="https://res.cloudinary.com/dbt85chus/image/upload/v1767717725/Screenshot_from_2026-01-06_22-10-01_qbudwp.png"
                 alt="Zouqly Logo"
-                className="h-8 w-8 rounded-full object-cover"
+                className="h-12 w-12 rounded-full object-cover border-2 border-white/30"
               />
-              <span className="font-display text-2xl font-bold">Zouqly</span>
+              <div className="flex flex-col">
+                <span className="font-display text-2xl font-bold">
+                  Zouqly
+                </span>
+                <span className="text-sm text-white/70 mt-1">
+                  Your Taste Habit
+                </span>
+              </div>
             </div>
-            <p className="text-sm text-white/80">
+
+            <p className="text-sm text-white/80 mt-4">
               Where Quality Meets Expectation & Taste
             </p>
           </div>
+
 
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
