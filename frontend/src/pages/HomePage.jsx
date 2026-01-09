@@ -74,7 +74,7 @@ const HomePage = () => {
                 size="sm"
                 className="bg-white text-[#2D4A3E] hover:bg-white/90 rounded-full font-semibold shadow-md transition-all duration-300"
             >
-                Go Shop Now
+                Shop Now
                 <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </Link>

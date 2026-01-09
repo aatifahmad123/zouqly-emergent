@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Mail, MapPin, Instagram } from 'lucide-react'
+import { Mail, MapPin, Instagram, Facebook } from 'lucide-react'
 
 const Footer = () => {
   return (
     <footer className="bg-[#2D4A3E] text-white mt-20" data-testid="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <img
@@ -71,14 +71,37 @@ const Footer = () => {
 
           <div>
             <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+            <div className="space-y-2">
+              <a
+                href="https://instagram.com/zouqly.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+                @zouqly.in
+              </a>
+              <a
+                href="https://www.facebook.com/Zouqly.In/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+                Zouqly
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg mb-4">Our Partners</h3>
             <a
-              href="https://instagram.com/zouqly.in"
+              href="https://www.meesho.com/HUBOFALLDRYFRUITS"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white transition-colors inline-block"
             >
-              <Instagram className="h-5 w-5" />
-              @zouqly.in
+              Meesho Store
             </a>
           </div>
         </div>
