@@ -71,24 +71,24 @@ const Footer = () => {
 
           <div>
             <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
-            <div className="space-y-2">
+            <div className="flex gap-4">
               <a
                 href="https://instagram.com/zouqly.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5" />
-                @zouqly.in
+                <Instagram className="h-6 w-6" />
               </a>
               <a
                 href="https://www.facebook.com/Zouqly.In/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors"
+                aria-label="Facebook"
               >
-                <Facebook className="h-5 w-5" />
-                Zouqly
+                <Facebook className="h-6 w-6" />
               </a>
             </div>
           </div>

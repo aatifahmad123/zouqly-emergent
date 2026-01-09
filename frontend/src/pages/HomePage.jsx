@@ -411,8 +411,125 @@ const HomePage = () => {
 
 
 
+            {/* FAQ Section */}
+            <section className="py-16 px-4 bg-white">
+                <div className="max-w-4xl mx-auto">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="font-display text-3xl lg:text-4xl font-bold text-[#2D4A3E] mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                        <p className="text-[#666666]">
+                            Find answers to common questions about our products and services
+                        </p>
+                    </motion.div>
+
+                    <div className="space-y-4">
+                        {[
+                            {
+                                question: "What are the health benefits of eating dry fruits?",
+                                answer: "Dry fruits are nutrient-dense foods packed with essential vitamins, minerals, fiber, and healthy fats. They help boost immunity, improve digestion, support heart health, provide energy, strengthen bones, and promote healthy skin and hair. Regular consumption in moderation can also help manage weight and reduce the risk of chronic diseases."
+                            },
+                            {
+                                question: "How many dry fruits should I eat daily?",
+                                answer: "A handful (about 30-40 grams) of mixed dry fruits per day is generally recommended. This typically includes 4-5 almonds, 2-3 walnuts, 2-3 cashews, and a few raisins or dates. However, the quantity may vary based on individual dietary needs and health goals."
+                            },
+                            {
+                                question: "When is the best time to eat dry fruits?",
+                                answer: "The best time to consume dry fruits is in the morning or as a mid-morning snack. Eating them on an empty stomach or soaking them overnight (especially almonds and raisins) can enhance nutrient absorption. They also make excellent pre-workout or post-workout snacks for energy."
+                            },
+                            {
+                                question: "Should I soak dry fruits before eating?",
+                                answer: "Soaking certain dry fruits like almonds, raisins, and figs overnight can make them easier to digest and enhance nutrient absorption. Soaking helps remove phytic acid and tannins, making the nutrients more bioavailable. However, nuts like cashews and pistachios can be consumed without soaking."
+                            },
+                            {
+                                question: "How should I store dry fruits to keep them fresh?",
+                                answer: "Store dry fruits in airtight containers in a cool, dry place away from direct sunlight. For longer shelf life, you can refrigerate them, especially during summer months. Properly stored dry fruits can last for several months while maintaining their freshness and nutritional value."
+                            },
+                            {
+                                question: "Can diabetics eat dry fruits?",
+                                answer: "Yes, diabetics can eat dry fruits in moderation, but should be cautious with naturally sweet ones like dates, raisins, and figs. Nuts like almonds, walnuts, and pistachios have a lower glycemic index and are better options. It's always best to consult with a healthcare provider for personalized advice."
+                            },
+                            {
+                                question: "Are roasted and salted dry fruits healthy?",
+                                answer: "Plain, unsalted, and unroasted dry fruits are the healthiest option. Roasted and salted varieties may contain added oils, sodium, and preservatives that reduce their nutritional benefits. If you prefer roasted nuts, choose lightly roasted or dry-roasted options without added salt."
+                            },
+                            {
+                                question: "Can dry fruits help with weight loss?",
+                                answer: "When consumed in moderation, dry fruits can support weight loss by providing satiety, reducing cravings, and offering sustained energy. They're rich in protein and healthy fats that keep you full longer. However, portion control is key as they are calorie-dense."
+                            },
+                            {
+                                question: "What's the difference between dry fruits and dried fruits?",
+                                answer: "Dry fruits typically refer to nuts and seeds like almonds, cashews, walnuts, and pistachios. Dried fruits are fresh fruits that have been dehydrated, such as raisins, dried apricots, dates, and figs. Both are nutritious but have different nutritional profiles."
+                            },
+                            {
+                                question: "Are organic dry fruits better than regular ones?",
+                                answer: "Organic dry fruits are grown without synthetic pesticides, fertilizers, or chemicals, making them a cleaner option. While both organic and regular dry fruits offer nutritional benefits, organic varieties may have fewer chemical residues and are often considered more environmentally sustainable."
+                            }
+                        ].map((item, index) => (
+                            <FAQItem 
+                                key={index} 
+                                question={item.question} 
+                                answer={item.answer} 
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             <Footer />
         </div>
+    );
+}
+
+// FAQ Item Component
+function FAQItem({ question, answer }) {
+    const [isOpen, setIsOpen] = React.useState(false);
+    
+    return (
+        <motion.div 
+            className="border border-gray-200 rounded-xl overflow-hidden"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+        >
+            <button
+                className={`w-full px-6 py-4 text-left flex justify-between items-center transition-colors ${isOpen ? 'bg-[#2D4A3E] text-white' : 'bg-white hover:bg-gray-50 text-[#2D4A3E]'}`}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <span className="font-medium text-lg">{question}</span>
+                <motion.span
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <svg 
+                        className={`w-5 h-5 transition-transform ${isOpen ? 'text-white' : 'text-[#2D4A3E]'}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </motion.span>
+            </button>
+            <motion.div
+                initial={false}
+                animate={{
+                    height: isOpen ? 'auto' : 0,
+                    opacity: isOpen ? 1 : 0,
+                    padding: isOpen ? '1.5rem' : '0 1.5rem',
+                }}
+                className="bg-white overflow-hidden"
+                transition={{ duration: 0.3 }}
+            >
+                <p className="text-gray-600">{answer}</p>
+            </motion.div>
+        </motion.div>
     );
 };
 
