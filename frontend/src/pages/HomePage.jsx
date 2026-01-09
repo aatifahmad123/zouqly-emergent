@@ -137,7 +137,7 @@ const HomePage = () => {
                             className="relative"
                         >
                             <img
-                                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767941448/image-one_1_obqz4w.png"
+                                src="https://res.cloudinary.com/dbt85chus/image/upload/v1767941119/image-one_ymlgjm.png"
                                 alt="Premium Dry Fruits"
                                 className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
                             />
@@ -338,81 +338,77 @@ const HomePage = () => {
             )}
 
             {/* Testimonials */}
+
+{/* Testimonials */}
+
+{/* Testimonials */}
 {testimonials.length > 0 && (
-  <section
-    className="py-20 px-4 overflow-hidden bg-gradient-to-b from-[#F3EFE6] to-[#FAF7F2]"
-    data-testid="testimonials-section"
-  >
-    <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-14">
-        <h2 className="font-display text-3xl lg:text-4xl font-bold text-[#2D4A3E] mb-3">
-          What Our Customers Say
-        </h2>
-        <p className="text-[#2D4A3E]/70 text-sm">
-          Real stories from people who love Zouqly
-        </p>
-      </div>
+  <section className="py-16 bg-gradient-to-b from-white to-orange-50">
+    <div className="container mx-auto px-4 mb-12 text-center">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-bold mb-4"
+      >
+        What Our Customers Say
+      </motion.h2>
+      <p className="text-gray-600 max-w-2xl mx-auto">
+        Real stories from people who love Zouqly
+      </p>
+    </div>
 
-      <div className="relative">
-        <style>{`
-          @keyframes scroll-testimonials {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-
-          .testimonials-track {
-            animation: scroll-testimonials 25s linear infinite;
-            will-change: transform;
-          }
-
-          /* Faster on mobile */
-          @media (max-width: 768px) {
-            .testimonials-track {
-              animation-duration: 15s;
-            }
-          }
-
-          .testimonials-track:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
-
-        <div className="flex testimonials-track">
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <div
-              key={`${testimonial.id}-${index}`}
-              className="flex-shrink-0 w-80 sm:w-96 mx-4"
-            >
-              <Card className="p-6 bg-white/90 backdrop-blur rounded-3xl border-none shadow-xl h-full transition-transform duration-300 hover:-translate-y-1">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-[#D4A017] text-[#D4A017]"
-                    />
-                  ))}
-                </div>
-
-                <p className="text-[#555555] mb-5 leading-relaxed text-sm">
-                  “{testimonial.comment}”
-                </p>
-
-                <p className="font-semibold text-[#2D4A3E] text-sm">
+    {/* Scrolling Container */}
+    <div className="overflow-hidden">
+      <motion.div
+        className="flex gap-6"
+        animate={{
+          x: ["0%", "-33.333%"],
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: testimonials.length * 5,
+            ease: "linear",
+          },
+        }}
+        style={{ width: "max-content" }}
+      >
+        {/* Triple testimonials for seamless loop */}
+        {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
+          <Card
+            key={`testimonial-${index}`}
+            className="w-[320px] md:w-[420px] flex-shrink-0 p-6 bg-white shadow-lg"
+          >
+            <div className="flex gap-1 mb-4">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                />
+              ))}
+            </div>
+            <p className="text-gray-700 mb-6 italic leading-relaxed">
+              "{testimonial.comment}"
+            </p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-semibold">
+                {testimonial.name.charAt(0)}
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">
                   {testimonial.name}
                 </p>
-              </Card>
+                <p className="text-sm text-gray-500">Verified Customer</p>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </Card>
+        ))}
+      </motion.div>
     </div>
   </section>
 )}
-
 
             <Footer />
         </div>
